@@ -1,13 +1,13 @@
 # azure-aks-terraform-webapp-deployment
 
-This code repository demonstrates the deployment of a web application to Azure using Docker containers and Kubernetes. The deployment process includes configuring and deploying supporting infrastructure as code using Terraform or ARM templates. Additionally, the repository includes automation for building and deploying the web application, allowing for easy deployment, destruction, and redeployment of the application and its infrastructure.
+This code repository demonstrates the deployment of a Flask web application to Azure using Docker containers and Kubernetes. The deployment process includes configuring and deploying supporting infrastructure as code using Terraform. Additionally, the repository includes automation for building and deploying the Flask web application, allowing for easy deployment, destruction, and redeployment of the application and its infrastructure.
 
 
-1. Deploy a web application to Azure.
+1. Deploy a Flask web application to Azure.
 
       ![azure-aks-terraform-webapp-deployment](images/aks_17.png)
 
-2. Deploy the web application as a Docker Container.
+2. Deploy the Flask web application as a Docker Container.
 
       ![azure-aks-terraform-webapp-deployment](images/aks_10.png)
 
@@ -17,7 +17,7 @@ This code repository demonstrates the deployment of a web application to Azure u
       ![azure-aks-terraform-webapp-deployment](images/aks_15.png)
 
 
-4. Any supporting infrastructure is configured and deployed as code (e.g., Terraform, ARM)
+4. Any supporting infrastructure is configured and deployed as code - Terraform
 
 
       ![azure-aks-terraform-webapp-deployment](images/aks_2.png)
@@ -43,7 +43,7 @@ This code repository demonstrates the deployment of a web application to Azure u
       ![azure-aks-terraform-webapp-deployment](images/aks_13.png)
 
 
-5. Any build and deployment automation in deploying the web application.
+5. Any build and deployment automation in deploying the Flask web application.
    - devops-exercise-azure-aks-CI
   
      
@@ -61,7 +61,7 @@ This code repository demonstrates the deployment of a web application to Azure u
       ![azure-aks-terraform-webapp-deployment](images/aks_6.png)
 
 
-6. Demonstrating the ability to deploy, destroy, and re-deploy the web application and any supporting infrastructure.
+6. Demonstrating the ability to deploy, destroy, and re-deploy the Flask web application and any supporting infrastructure.
 
    -  Destory and re-deploy of Infrastructure
 
