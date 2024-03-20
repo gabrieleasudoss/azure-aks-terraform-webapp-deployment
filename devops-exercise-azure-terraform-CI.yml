@@ -1,0 +1,123 @@
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+jobs:
+- job: Job_1
+  displayName: Agent job 1 - Destroy Infrastructure using Terraform
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    clean: true
+    fetchTags: false
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : init'
+    inputs:
+      workingDirectory: terraform/terraform-aks
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappsetuprg
+      backendAzureRmStorageAccountName: flaskappsetupsa
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : validate'
+    inputs:
+      command: validate
+      workingDirectory: terraform/terraform-aks
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappsetuprg
+      backendAzureRmStorageAccountName: flaskappsetupsa
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : format'
+    inputs:
+      command: custom
+      workingDirectory: terraform/terraform-aks
+      customCommand: fmt
+      environmentServiceNameAzureRM: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappsetuprg
+      backendAzureRmStorageAccountName: flaskappsetupsa
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : destory'
+    inputs:
+      command: destroy
+      workingDirectory: terraform/terraform-aks
+      commandOptions: --auto-approve
+      environmentServiceNameAzureRM: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappaksrg
+      backendAzureRmStorageAccountName: flaskappakssa97011
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+- job: Job_2
+  displayName: Agent job 2 - Recreating Infrastructure using Terraform
+  dependsOn: Job_1
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    clean: true
+    fetchTags: false
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : init'
+    inputs:
+      workingDirectory: terraform/terraform-aks
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappsetuprg
+      backendAzureRmStorageAccountName: flaskappsetupsa
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : validate'
+    inputs:
+      command: validate
+      workingDirectory: terraform/terraform-aks
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappaksrg48770
+      backendAzureRmStorageAccountName: flaskappakssa48770
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : format'
+    inputs:
+      command: custom
+      workingDirectory: terraform/terraform-aks
+      customCommand: fmt
+      environmentServiceNameAzureRM: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappaksrg48770
+      backendAzureRmStorageAccountName: flaskappakssa48770
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : plan'
+    inputs:
+      command: plan
+      workingDirectory: terraform/terraform-aks
+      customCommand: terraform fmt
+      environmentServiceNameAzureRM: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappaksrg48770
+      backendAzureRmStorageAccountName: flaskappakssa48770
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+  - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV4@4
+    displayName: 'Terraform : apply'
+    inputs:
+      command: apply
+      workingDirectory: terraform/terraform-aks
+      customCommand: terraform apply -auto-approve
+      commandOptions: --auto-approve
+      environmentServiceNameAzureRM: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendServiceArm: bd523871-a8d8-48ab-a39a-6f9e2b67a4ff
+      backendAzureRmResourceGroupName: flaskappaksrg48770
+      backendAzureRmStorageAccountName: flaskappakssa48770
+      backendAzureRmContainerName: terraform-state
+      backendAzureRmKey: terraform.tfstate
+...

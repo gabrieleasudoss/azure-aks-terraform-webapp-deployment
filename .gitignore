@@ -1,0 +1,35 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore environment files
+.env
+
+# Ignore Docker-related files
+.dockerignore
+
+# Ignore Kubernetes-related files
+
+# Ignore Terraform state files
+terraform/.terraform
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Local .terraform directories
+**/.terraform/*
+.terraform.lock.hcl
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+*.hintrc
+*.exe

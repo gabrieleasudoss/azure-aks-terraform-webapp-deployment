@@ -1,0 +1,48 @@
+# Variable 'servicePrincipalId' was defined in the Variables tab
+# Variable 'servicePrincipalKey' was defined in the Variables tab
+# Variable 'tenantId' was defined in the Variables tab
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+jobs:
+- job: Job_1
+  displayName: Agent job 1
+  pool:
+    vmImage: ubuntu-latest
+  steps:
+  - checkout: self
+    clean: true
+    fetchTags: false
+  - task: Docker@2
+    displayName: login
+    inputs:
+      containerRegistry: 0eba5009-0b4d-4957-8304-86c04f736834
+      command: login
+  - task: Bash@3
+    displayName: Build and Push
+    inputs:
+      targetType: inline
+      script: >-
+        cd $(Build.SourcesDirectory)/flask-app/app/
+
+
+        docker build -t flaskappaksacr.azurecr.io/gabrieleasudoss/flaskapp:$(Build.BuildId) .
+
+
+        az login --service-principal -u $(servicePrincipalId) -p $(servicePrincipalKey) --tenant $(tenantId)
+
+
+        az acr login --name flaskappaksacr
+
+
+        docker push flaskappaksacr.azurecr.io/gabrieleasudoss/flaskapp:$(Build.BuildId)
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+    inputs:
+      Contents: kubernetes/azure-aks.yaml
+      TargetFolder: $(build.artifactstagingdirectory)
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+...
