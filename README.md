@@ -5,22 +5,22 @@ This code repository demonstrates the deployment of a web application to Azure u
 
 1. Deploy a web application to Azure.
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_17)
+      ![azure-aks-terraform-webapp-deployment](images/aks_17.png)
 
 2. Deploy the web application as a Docker Container.
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_10)
+      ![azure-aks-terraform-webapp-deployment](images/aks_10.png)
 
 3. Deploy the Docker Container using Kubernetes.
 
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_15)
+      ![azure-aks-terraform-webapp-deployment](images/aks_15.png)
 
 
 4. Any supporting infrastructure is configured and deployed as code (e.g., Terraform, ARM)
 
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_2)
+      ![azure-aks-terraform-webapp-deployment](images/aks_2.png)
 
 
   I have 2 folders namely for creating Terraform Infarstructure
@@ -28,51 +28,51 @@ This code repository demonstrates the deployment of a web application to Azure u
   - terraform-setup
     - For setting basic Infarstructure for Terraform pipeline namely Storage account to store terraform state etc.
  
-      ![azure-aks-terraform-webapp-deployment](images/aks_14)
+      ![azure-aks-terraform-webapp-deployment](images/aks_14.png)
 
 
   - terraform-ask
     - For setting Kubernets and Azure container Registry etc.
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_11)
+      ![azure-aks-terraform-webapp-deployment](images/aks_11.png)
 
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_12)
+      ![azure-aks-terraform-webapp-deployment](images/aks_12.png)
 
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_13)
+      ![azure-aks-terraform-webapp-deployment](images/aks_13.png)
 
 
 5. Any build and deployment automation in deploying the web application.
    - devops-exercise-azure-aks-CI
   
      
-      ![azure-aks-terraform-webapp-deployment](images/aks_16)
+      ![azure-aks-terraform-webapp-deployment](images/aks_16.png)
      
-      ![azure-aks-terraform-webapp-deployment](images/aks_4)
+      ![azure-aks-terraform-webapp-deployment](images/aks_4.png)
 
      
   - devops-exercise-azure-aks-CD
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_5)
+      ![azure-aks-terraform-webapp-deployment](images/aks_5.png)
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_7)
+      ![azure-aks-terraform-webapp-deployment](images/aks_7.png)
 
-      ![azure-aks-terraform-webapp-deployment](images/aks_6)
+      ![azure-aks-terraform-webapp-deployment](images/aks_6.png)
 
 
 6. Demonstrating the ability to deploy, destroy, and re-deploy the web application and any supporting infrastructure.
 
    -  Destory and re-deploy of Infrastructure
 
-       ![azure-aks-terraform-webapp-deployment](images/aks_8)
+       ![azure-aks-terraform-webapp-deployment](images/aks_8.png)
 
-       ![azure-aks-terraform-webapp-deployment](images/aks_9)
+       ![azure-aks-terraform-webapp-deployment](images/aks_9.png)
 
    - Deploy and re-deploy of Website
 
-       ![azure-aks-terraform-webapp-deployment](images/aks_19)
+       ![azure-aks-terraform-webapp-deployment](images/aks_19.png)
 
-       ![azure-aks-terraform-webapp-deployment](images/aks_17)
+       ![azure-aks-terraform-webapp-deployment](images/aks_17.png)
 
-       ![azure-aks-terraform-webapp-deployment](images/aks_18)
+       ![azure-aks-terraform-webapp-deployment](images/aks_18.png)
